@@ -1,7 +1,9 @@
 from FastFourierTransform import FFT
 
 
-def SparseFFT(a, k):
+def SparseFFT(a: list, k: int, non_zero: bool) -> list:
+    # while I am sure this works, it is definitely not the most efficient way.
+    """
     n = len(a)
 
     # case where just every coefficient is valid. This is just the FFT case.
@@ -20,5 +22,14 @@ def SparseFFT(a, k):
     for i in range((n >> 1)):
         y[i] = y0[i]
         y[(n >> 1) + i] = y0[i]
+    """
+
+    # my new implementation will only consider the non-zero values of the vector.
+    if non_zero is False:
+        a = a[0::k]  # this will remove all the non-zero elements since the new implementation does not need then.
+
+    y_l = FFT(a)
+
+    y = y_l * k  # this is obviously way faster.
 
     return y
