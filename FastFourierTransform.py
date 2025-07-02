@@ -2,7 +2,7 @@ import math
 import cmath
 
 
-def FFT(a):
+def FFT(a: list) -> list:
     n = len(a)
 
     # base case. We do not need to do any calculations.
@@ -33,7 +33,7 @@ def FFT(a):
     return y
 
 
-def neg_FFT(a):
+def neg_FFT(a: list) -> list:
     # the negative fourier transform is a semi-inverse transform. It is the same process as the FFT but it uses
     # the inverse/conjugate of the root of unity instead.
     n = len(a)
@@ -63,7 +63,7 @@ def neg_FFT(a):
     return y
 
 
-def IFFT(a):
+def IFFT(a: list) -> list:
     # this completes the inversion of the FFT. We use the neg_FFT but divide by the length of the coefficient vector.
     n = len(a)
     neg = neg_FFT(a)
